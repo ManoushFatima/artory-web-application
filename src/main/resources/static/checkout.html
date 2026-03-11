@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Artory 𐙚</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Artory 𐙚</a>
+                <button class="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container animate-fade-in">
+        <h1 class="mb-4">Checkout</h1>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 4rem; flex-direction: row-reverse;">
+
+            <!-- Order Summary (Right side on desktop) -->
+            <div class="cart-summary" style="margin-top: 0; width: 100%; max-width: 400px;">
+                <h3 class="mb-4">Order Summary</h3>
+                <div id="checkout-items" class="mb-4" style="border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+                    <!-- Injected by JS -->
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span id="checkout-total" style="color: var(--primary-color);">PKR 0</span>
+                </div>
+            </div>
+
+            <!-- Checkout Form (Left side) -->
+            <div style="flex: 1; min-width: 300px;">
+                <div style="background: var(--card-bg); padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+                    <h2 class="mb-4">Shipping Information</h2>
+
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <div class="form-group" style="flex: 1;">
+                                <label class="form-label" for="email">Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label class="form-label" for="phone">Phone</label>
+                                <input type="tel" id="phone" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="address">Shipping Address</label>
+                            <textarea id="address" class="form-control" required></textarea>
+                        </div>
+
+                        <div id="error-msg" class="text-danger mb-3" style="display: none; font-weight: 500;"></div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.125rem; padding: 1rem;" id="submit-btn">
+                            Place Order
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Success Modal (Hidden initially) -->
+        <div id="success-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+            <div class="animate-fade-in" style="background: var(--card-bg); padding: 3rem; border-radius: 1rem; text-align: center; max-width: 400px; box-shadow: var(--shadow-lg);">
+                <i class="fa-solid fa-circle-check fa-4x mb-3" style="color: var(--secondary-color);"></i>
+                <h2 class="mb-2">Order Confirmed!</h2>
+                <p class="text-muted mb-4">Thank you for your purchase. We've received your order and will process it shortly.</p>
+                <a href="index.html" class="btn btn-primary" style="width: 100%;">Return to Home</a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer style="margin-top: auto;">s
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">Artory 𐙚</a>
+                <p class="footer-bio">Original canvas art by an independent artist. Handcrafted, one of a kind pieces to bring peace and beauty to your walls.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/artory._/" target="_blank" class="social-btn" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram fa-lg"></i>
+                    </a>
+                    <a href="https://wa.me/03390115402" target="_blank" class="social-btn" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Shop Collection</a></li>
+                    <li><a href="contact.html">Contact Me</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Shipping Policy</a></li>
+                    <li><a href="contact.html">Returns & Refunds</a></li>
+                    <li><a href="contact.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p class="copyright">&copy; 2026 Artory. All rights reserved.</p>
+            <p class="author-signature">by Manoush Fatima</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = CartManager.getCart();
+
+            if (cart.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+
+            const itemsContainer = document.getElementById('checkout-items');
+            itemsContainer.innerHTML = cart.map(item => `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                    <span>${item.quantity}x ${item.name}</span>
+                    <span style="font-weight: 600;">${formatCurrency(item.price * item.quantity)}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('checkout-total').textContent = formatCurrency(CartManager.getTotalPrice());
+
+            // Handle submission
+            document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = document.getElementById('submit-btn');
+                const errorMsg = document.getElementById('error-msg');
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+                errorMsg.style.display = 'none';
+
+                try {
+                    // Flatten cart logic (if quantity > 1, add product ID multiple times)
+                    const productIds = [];
+                    cart.forEach(item => {
+                        for (let i = 0; i < item.quantity; i++) productIds.push(item.id);
+                    });
+
+                    const orderData = {
+                        customerName: document.getElementById('name').value,
+                        customerEmail: document.getElementById('email').value,
+                        customerPhone: document.getElementById('phone').value,
+                        customerAddress: document.getElementById('address').value,
+                        productIds: productIds
+                    };
+
+                    try {
+                        await ApiService.placeOrder(orderData);
+                    } catch (backendErr) {
+                        console.warn("Backend is not running. Order will only be sent via email.");
+                    }
+
+                    // Send Email Notification via Web3Forms
+                    const emailPayload = {
+                        access_key: "03a63072-3084-4e07-a83e-60a3ebed2597",
+                        subject: "New Artory Order!",
+                        from_name: "Artory Website",
+                        name: orderData.customerName,
+                        email: orderData.customerEmail,
+                        message: `You received a new order from ${orderData.customerName}.\nPhone: ${orderData.customerPhone}\nAddress: ${orderData.customerAddress}\nItems: ${cart.map(item => item.quantity + 'x ' + item.name).join(', ')}\nTotal: ${formatCurrency(CartManager.getTotalPrice())}`
+                    };
+
+                    await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(emailPayload)
+                    });
+
+                    CartManager.clearCart();
+                    document.getElementById('success-modal').style.display = 'flex';
+
+                } catch (err) {
+                    errorMsg.textContent = "Failed to place order.";
+                    errorMsg.style.display = 'block';
+                    btn.disabled = false;
+                    btn.textContent = "Place Order";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
