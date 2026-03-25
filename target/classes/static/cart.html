@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Artory 𐙚</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Artory 𐙚</a>
+                <button class="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="cart.html" class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container animate-fade-in">
+        <h1 class="mb-4">Your Shopping Cart</h1>
+
+        <div id="cart-content" style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start;">
+            <!-- Cart Items -->
+            <div style="flex: 1; min-width: 300px; overflow-x: auto;">
+                <table class="cart-table" id="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items-body">
+                        <!-- Items injected by JS -->
+                    </tbody>
+                </table>
+                <div id="empty-cart-msg" style="display: none; padding: 4rem; text-align: center; background: var(--card-bg); border-radius: 1rem; box-shadow: var(--shadow-sm);">
+                    <i class="fa-solid fa-cart-arrow-down fa-3x" style="color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                    <h2 class="mb-2">Your cart is empty</h2>
+                    <p class="text-muted mb-4">Looks like you haven't added anything to your cart yet.</p>
+                    <a href="products.html" class="btn btn-primary">Start Shopping</a>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="cart-summary" id="cart-summary-box" style="width: 100%; max-width: 400px; display: none;">
+                <h3 class="mb-4">Order Summary</h3>
+                <div class="summary-row">
+                    <span class="text-muted">Subtotal (<span id="summary-items">0</span> items)</span>
+                    <span id="summary-subtotal">PKR 0</span>
+                </div>
+                <div class="summary-row">
+                    <span class="text-muted">Shipping</span>
+                    <span>Free</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span id="summary-total" style="color: var(--primary-color);">PKR 0</span>
+                </div>
+                <a href="checkout.html" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; font-size: 1.125rem;">
+                    Proceed to Checkout
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer style="margin-top: auto;">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">Artory 𐙚</a>
+                <p class="footer-bio">Original canvas art by an independent artist. Handcrafted, one of a kind pieces to bring peace and beauty to your walls.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/artory._/" target="_blank" class="social-btn" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram fa-lg"></i>
+                    </a>
+                    <a href="https://wa.me/03390115402" target="_blank" class="social-btn" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Shop Collection</a></li>
+                    <li><a href="contact.html">Contact Me</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Shipping Policy</a></li>
+                    <li><a href="contact.html">Returns & Refunds</a></li>
+                    <li><a href="contact.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p class="copyright">&copy; 2026 Artory. All rights reserved.</p>
+            <p class="author-signature">by Manoush Fatima</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        function renderCart() {
+            const cartItems = CartManager.getCart();
+            const tbody = document.getElementById('cart-items-body');
+            const emptyMsg = document.getElementById('empty-cart-msg');
+            const table = document.getElementById('cart-table');
+            const summaryBox = document.getElementById('cart-summary-box');
+
+            if (cartItems.length === 0) {
+                table.style.display = 'none';
+                summaryBox.style.display = 'none';
+                emptyMsg.style.display = 'block';
+                return;
+            }
+
+            table.style.display = 'table';
+            summaryBox.style.display = 'block';
+            emptyMsg.style.display = 'none';
+
+            tbody.innerHTML = cartItems.map(item => `
+                <tr>
+                    <td data-label="Product">
+                        <div style="display: flex; align-items: center;">
+                            <img src="${item.imageUrl || 'https://via.placeholder.com/60'}" class="cart-item-image" alt="item">
+                            <span style="font-weight: 500;">${item.name}</span>
+                        </div>
+                    </td>
+                    <td data-label="Price" class="text-muted">${formatCurrency(item.price)}</td>
+                    <td data-label="Qty">${item.quantity}</td>
+                    <td data-label="Total" style="font-weight: 600;">${formatCurrency(item.price * item.quantity)}</td>
+                    <td data-label="">
+                        <button class="btn-remove" onclick="removeItemFromCart(${item.id})">Remove</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            document.getElementById('summary-items').textContent = CartManager.getTotalItems();
+            const totalStr = formatCurrency(CartManager.getTotalPrice());
+            document.getElementById('summary-subtotal').textContent = totalStr;
+            document.getElementById('summary-total').textContent = totalStr;
+        }
+
+        function removeItemFromCart(id) {
+            CartManager.removeItem(id);
+            renderCart();
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+</body>
+
+</html>

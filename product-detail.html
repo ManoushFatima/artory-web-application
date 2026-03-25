@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Artory 𐙚</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Artory 𐙚</a>
+                <button class="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="cart.html" class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="products.html" class="mb-4" style="display: inline-block; color: var(--text-secondary);">&larr; Back to Products</a>
+
+        <div id="product-detail-container" class="animate-fade-in" style="display: flex; gap: 4rem; flex-wrap: wrap;">
+            <!-- Content injected by JS -->
+            <div style="width: 100%; text-align: center; padding: 4rem;">
+                <i class="fa-solid fa-circle-notch fa-spin fa-2xl" style="color: var(--primary-color);"></i>
+            </div>
+        </div>
+    </main>
+
+    <footer style="margin-top: auto;">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">Artory 𐙚</a>
+                <p class="footer-bio">Original canvas art by an independent artist. Handcrafted, one of a kind pieces to bring peace and beauty to your walls.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/artory._/" target="_blank" class="social-btn" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram fa-lg"></i>
+                    </a>
+                    <a href="https://wa.me/03390115402" target="_blank" class="social-btn" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Shop Collection</a></li>
+                    <li><a href="contact.html">Contact Me</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Shipping Policy</a></li>
+                    <li><a href="contact.html">Returns & Refunds</a></li>
+                    <li><a href="contact.html">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p class="copyright">&copy; 2026 Artory. All rights reserved.</p>
+            <p class="author-signature">by Manoush Fatima</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const container = document.getElementById('product-detail-container');
+
+            if (!productId) {
+                container.innerHTML = `<h2 class="text-danger">Product Not Found</h2>`;
+                return;
+            }
+
+            let p = await ApiService.getProduct(productId);
+
+            if (!p) {
+                const demoProducts = [{
+                        id: 8,
+                        name: "Urban Symphony",
+                        price: 6200,
+                        imageUrl: "Pictures/8.png.jpeg",
+                        description: "A chaotic yet beautiful blend of sharp angles and energetic colors representing city life."
+                    },
+                    {
+                        id: 2,
+                        name: "Silent Bloom",
+                        price: 4200,
+                        imageUrl: "Pictures/2.png.jpeg",
+                        description: "Soft contrasts and dynamic strokes capturing the quiet, beautiful awakening of nature."
+                    },
+                    {
+                        id: 3,
+                        name: "Midnight Reverie",
+                        price: 5000,
+                        imageUrl: "Pictures/3.png.jpeg",
+                        description: "Bold textures and deep hues creating a striking visual narrative of the mystic night sky."
+                    },
+                    {
+                        id: 4,
+                        name: "Golden Cascade",
+                        price: 6500,
+                        imageUrl: "Pictures/4.png.jpeg",
+                        description: "A radiant array of warm tones cascading down the canvas to bring light to any room."
+                    },
+                    {
+                        id: 5,
+                        name: "Whispering Woods",
+                        price: 3800,
+                        imageUrl: "Pictures/5.png.jpeg",
+                        description: "An abstract exploration of forest depths, textured with rich greens and earthly browns."
+                    },
+                    {
+                        id: 6,
+                        name: "Crimson Horizon",
+                        price: 7000,
+                        imageUrl: "Pictures/6.png.jpeg",
+                        description: "A passionate exploration of red hues that commands attention and inspires bold thoughts."
+                    },
+                    {
+                        id: 7,
+                        name: "Oceanic Dreams",
+                        price: 4800,
+                        imageUrl: "Pictures/7.png.jpeg",
+                        description: "Serene blues and flowing lines that perfectly mimic the gentle yet powerful waves of the sea."
+                    },
+                    {
+                        id: 1,
+                        name: "Ethereal Echo",
+                        price: 3500,
+                        imageUrl: "Pictures/1.png.jpeg",
+                        description: "A mesmerizing blend of colors that evokes a sense of deep tranquility and inner peace."
+                    },
+                    {
+                        id: 9,
+                        name: "Pastel Illusion",
+                        price: 5500,
+                        imageUrl: "Pictures/9.png.jpeg",
+                        description: "Soft, blurred pastels that transport the viewer to a nostalgic, dreamy state of mind."
+                    },
+                    {
+                        id: 10,
+                        name: "Monochrome Minimal",
+                        price: 4500,
+                        imageUrl: "Pictures/10.png.jpeg",
+                        description: "Sleek, modern, and deeply impactful minimalist canvas utilizing only stark contrasts."
+                    }
+                ];
+                p = demoProducts.find(prod => prod.id == productId);
+            }
+
+            if (p) {
+                document.title = `${p.name} - Artory 𐙚`;
+                const productJson = JSON.stringify(p).replace(/'/g, "&#39;");
+
+                container.innerHTML = `
+                    <div style="flex: 1; min-width: 300px; position: relative; overflow: hidden; border-radius: 1rem; box-shadow: var(--shadow-md); height: auto; display: flex; align-items: flex-start; justify-content: center; padding: 2rem; background-color: var(--card-bg);">
+                        <img src="${p.imageUrl || 'https://via.placeholder.com/600'}" alt="${p.name}" style="position: relative; z-index: 1; width: 100%; height: auto; display: block; box-shadow: 0 15px 35px rgba(0,0,0,0.2); border: 8px solid #fafafa; background-color: #fff; border-radius: 3px; transition: transform 0.5s ease;">
+                    </div>
+                    <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center;">
+                        <h1 style="font-size: 3rem; line-height: 1.2; margin-bottom: 1rem;">${p.name}</h1>
+                        <p class="text-muted" style="font-size: 1.125rem; margin-bottom: 2rem; line-height: 1.8;">${p.description}</p>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary-color); margin-bottom: 2rem;">
+                            ${formatCurrency(p.price)}
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button class="btn btn-primary" style="flex: 2; padding: 1.25rem; font-size: 1.125rem;" onclick='CartManager.addItem(${productJson})'>
+                                <i class="fa-solid fa-cart-plus mb-1"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `<h2 class="text-danger">Product Not Found</h2>`;
+            }
+        });
+    </script>
+</body>
+
+</html>
