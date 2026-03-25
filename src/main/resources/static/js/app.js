@@ -1,7 +1,7 @@
 // app.js - Core application logic (API integration & localStorage)
 
 // This points to my Spring Boot backend server
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = '/api';
 
 // Utility: Format Currency. I added this so prices automatically show up looking like "PKR 5,000"
 function formatCurrency(amount) {
