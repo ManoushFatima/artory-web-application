@@ -38,6 +38,22 @@ The application provides an online platform where users can browse and purchase 
 
 ---
 
+## Installation and Running the Project
+
+1. Clone the repository
+
+git clone https://github.com/ManoushFatima/artory-web-application.git
+
+2. Navigate to the project folder
+
+cd artory-web-application
+
+3. Start the backend server
+
+./mvnw spring-boot:run
+
+4. Open the frontend files in your browser to access the website.
+
 ## Project Structure
 
 
