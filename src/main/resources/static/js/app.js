@@ -1,7 +1,7 @@
 // app.js - Core application logic (API integration & localStorage)
 
-// This points to my Spring Boot backend server
-const API_BASE_URL = '/api';
+// This points to my Spring Boot backend server on Railway
+const API_BASE_URL = 'https://artory-web-application-production.up.railway.app/api';
 
 // Utility: Format Currency. I added this so prices automatically show up looking like "PKR 5,000"
 function formatCurrency(amount) {
